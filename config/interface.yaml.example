@@ -1,0 +1,66 @@
+# 接口请求配置文件
+
+# 微博showbatch - HTTP协议
+mblog:
+  url: http://i2.api.weibo.com/2/statuses/show_batch.json
+  auth: true
+  type: http
+  method: GET
+  trytimes: 0  # 重试次数：0表示不重试，>0表示失败后重试的次数
+  timeout: 70 #ms
+
+# 微博showbatch - Motan协议
+mblog_motan:
+  service: com.weibo.api.FeedCoreStatusHttpService
+  auth: true
+  type: motan2
+  method: /2/statuses/show_batch.json
+  trytimes: 0  # 重试次数：0表示不重试，>0表示失败后重试的次数
+  timeout: 200 #ms
+
+# DA协议示例
+da_search:
+  url: da://hot_data_search/hot_feature_search/0
+  type: da
+  trytimes: 2  # 重试次数：失败后重试2次
+  timeout: 10
+
+# 支持content_json
+content_json_urlkey:
+  url: http://xxxxx.weibo.com/2/statuses/show_batch.json
+  auth: true
+  type: http
+  method: post
+  content_json: true
+  timeout:
+
+finder_ad_banner:
+  url: http://huati.search.weibo.com/finder/view_carousel.json
+  type: http
+  method: GET
+  timeout:
+
+wenda_box:
+  url: http://questionfeedrecall.search.weibo.com/recommend/box
+  type: http
+  method: POST
+  content_json: true
+  timeout: 500
+
+# lbs定位信息
+lbs:
+  url: http://i.api.weibo.cn/2/api/lbs/position.php
+  auth: true
+  type: http
+  method: POST
+  try_times: 0
+  timeout: 50
+
+abtest:
+  service: com.weibo.abtest.traffic.rpc.AlchemyJsonRpcService
+  auth: true
+  type: motan2
+  method: getConfigJson
+  content_json: true
+  trytimes: 0
+  timeout: 50

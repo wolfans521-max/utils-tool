@@ -1,0 +1,50 @@
+user:
+  daemon
+group:
+  daemon
+
+action_code:
+  name: stream
+  file_path: action_code/act_code_{Ymd}-{hour}.log
+  level: info
+  formatter: action
+
+feedexpo_mob:
+  name: stream
+  file_path: action_code/feedexpo_mob_{Ymd}-{hour}.log
+  formatter: common
+  no_timestamp: true
+
+cardexp_mob:
+  name: stream
+  file_path: action_code/cardexp_mob_{Ymd}-{hour}.log
+  formatter: common
+  no_timestamp: false
+
+page_visit:
+  name: stream
+  file_path: action_code/page_visit_{Ymd}-{hour}.log
+  formatter: common
+
+repostadexpo_mob:
+  name: stream
+  file_path: action_code/repostadexpo_mob_{Ymd}-{hour}.log
+  formatter: common
+
+mobile_query:
+  name: stream
+  file_path: mobile_query_{Ymd}-{hour}.log
+  formatter: common
+  no_timestamp: true
+
+finder_hot_feed_sensitive:
+  name: stream
+  file_path: finder_hot_feed_sensitive_{Ymd}-{hour}.log
+  formatter: common
+  no_timestamp: true
+
+hot_feed_push:
+  name: stream
+  file_path: finder_hot_feed_push_{Ymd}-{hour}.log
+  formatter: common
+  no_timestamp: true

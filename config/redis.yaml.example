@@ -1,0 +1,137 @@
+# Redis 配置文件
+# 参考 openapi/conf/resource.lua 中的 redis 配置结构
+
+redis:
+  # 默认超时时间（毫秒）
+  default_timeout: 300
+  # 默认数据库
+  default_db: 0
+  # 连接池配置
+  pool:
+    max_idle: 1000
+    max_active: 2000
+    idle_timeout: 10000  # 毫秒
+  
+  # 业务集群配置
+  clusters:
+    # 用户已读集群示例
+    user_read:
+      nodes:
+        - host: "rds27189.hebe.grid.sina.com.cn"
+          port: 27189
+          db: 0
+        - host: "rds27190.hebe.grid.sina.com.cn"
+          port: 27190
+          db: 0
+        - host: "rds27191.hebe.grid.sina.com.cn"
+          port: 27191
+          db: 0
+        - host: "rds27192.hebe.grid.sina.com.cn"
+          port: 27192
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 前端主库 pika
+    fe_m_pika:
+      nodes:
+        - host: "pkm25152.eos.grid.sina.com.cn"
+          port: 25152
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 前端从库 pika
+    fe_s_pika:
+      nodes:
+        - host: "pks25152.hebe.grid.sina.com.cn"
+          port: 25152
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 前端主库 redis
+    fe_m_redis:
+      nodes:
+        - host: "rm50260.eos.grid.sina.com.cn"
+          port: 50260
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 前端从库 redis
+    fe_s_redis:
+      nodes:
+        - host: "rs50260.hebe.grid.sina.com.cn"
+          port: 50260
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 计数器 redis
+    counter_redis:
+      nodes:
+        - host: "rs24234.hebe.grid.sina.com.cn"
+          port: 24234
+          db: 0
+        - host: "rs24235.hebe.grid.sina.com.cn"
+          port: 24235
+          db: 0
+        - host: "rs24236.hebe.grid.sina.com.cn"
+          port: 24236
+          db: 0
+        - host: "rs24237.hebe.grid.sina.com.cn"
+          port: 24237
+          db: 0
+      timeout: 300
+      auth: ""
+    
+    # 热搜查询控制（带密码示例）
+    hot_search_query:
+      nodes:
+        - host: "rs49077.hebe.grid.sina.com.cn"
+          port: 49077
+          db: 0
+      timeout: 300
+      auth: "A0r|01jY^\\huUD"
+
+    repost_redis:
+      nodes:
+        - host: "pks26113.hebe.grid.sina.com.cn"
+          port: 26113
+          db: 0
+        - host: "pks26114.hebe.grid.sina.com.cn"
+          port: 26114
+          db: 0
+        - host: "pks26115.hebe.grid.sina.com.cn"
+          port: 26115
+          db: 0
+        - host: "pks26116.hebe.grid.sina.com.cn"
+          port: 26116
+          db: 0
+      timeout: 300
+      auth: ""
+
+    # 注意：节点顺序必须与 openapi/conf/resource.lua 中的 user_data_s 保持一致！
+    user_data_s:
+      nodes:
+        - host: "rs50260.hebe.grid.sina.com.cn"
+          port: 50260
+          db: 11
+        - host: "rs52469.hebe.grid.sina.com.cn"
+          port: 52469
+          db: 11
+        - host: "rs7237.mars.grid.sina.com.cn"
+          port: 7237
+          db: 11
+        - host: "rs7238.mars.grid.sina.com.cn"
+          port: 7238
+          db: 11
+        - host: "rs7239.mars.grid.sina.com.cn"
+          port: 7239
+          db: 11
+        - host: "rs7240.mars.grid.sina.com.cn"
+          port: 7240
+          db: 11
+      timeout: 200
+      auth: ""

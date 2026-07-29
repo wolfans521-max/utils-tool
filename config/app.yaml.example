@@ -1,0 +1,45 @@
+api:
+  source: "2936099636"                    # 来源标识
+  token_file: "/data1/apache2/config/tauth_token_file"  # token文件路径或URL
+  default_method: "GET"                   # 默认请求方法
+  enable_cache: true                      # 是否启用缓存
+  cache_instance: "api_cache"             # 缓存实例名（对应cache.yaml中的配置）
+  env_group: "yf"                         # 环境组，用于替换配置中的%s占位符
+  degrade_key_prefix: "api_degrade_"      # 降级键前缀
+  interface_path: "interface.yaml"  #接口配置文件路径，线上需要做一下替换
+
+
+# Motan RPC配置（使用MeshClient方式）
+motan:
+  mesh_address: "127.0.0.1:9981"              # Mesh代理地址
+  application: "wb-search-app_finder-web"     # 调用服务的业务方
+  serialization: "simple"                     # 序列化方式
+  request_timeout: 1000                       # 请求超时时间（毫秒）
+
+# 服务发现配置
+discovery:
+  group: "default"                        # 默认服务组
+
+# 日志配置
+logger:
+  file:
+    enable: true
+    path: "/data1/apache2/phplogs"
+    #path: "../logs"
+    prefix: "finder"
+    delimiter: "_"
+    postfix: "2006-01-02-15"
+    extension: ".log"
+    tags: [ "req" ]
+    levels: [ "Info" ]
+  elk:
+    enable: false
+    prefix: "finder"
+    hosts: [ ]
+    tags: [ ]
+    levels: [ "Info" ]
+    white_list: [ ]
+
+#本地缓存配置文件
+cache:
+  config_path: "cache.yaml"
